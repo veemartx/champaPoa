@@ -1,0 +1,187 @@
+<style>
+    .navBar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav {
+        display: inline-flex;
+        margin-left: .5em;
+        margin-right: .5em;
+        /* min-width: 7em; */
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+        justify-content: space-between;
+
+    }
+
+    .nav a {
+        color: aliceblue;
+    }
+</style>
+
+<div class="sixteen wide column">
+
+</div>
+<div class="yello sixteen wide column">
+    <div class="ui grid" style="max-width: 85em;margin: auto;">
+        <div class="blu four wide column" style="background: rgba(0, 0, 0, 0.219);">
+
+            <span style="font-size:35px;font-weight:900; color: #f2f2f2;">Chama</span>
+            <span style="color:crimson;font-size:35px;font-weight: 600;">Poa</span>
+        </div>
+        <div class="re twelve wide column" style="background: rgba(0, 0, 0, 0.219);">
+            <div class="navBar">
+
+                <div class="nav">
+                    <a href="home">
+                        <i class="home icon"></i> Home
+                    </a>
+                </div>
+
+                <div class="nav">
+                    <a href="users">
+                        <i class="users icon"></i> Users
+                    </a>
+                </div>
+
+                <div class="nav">
+                    <a href="finance">
+                        <i class="money icon"></i> Finance
+                    </a>
+                </div>
+
+                <div class="nav">
+                    <a href="reports">
+                        <i class="pie chart icon"></i> Reports
+                    </a>
+                </div>
+
+                <div class="nav">
+                    <a href="settings">
+                        <i class="cogs icon"></i> Settings
+                    </a>
+                </div>
+
+                <div class="nav">
+                    <a style="cursor: pointer;" onclick="logout()">
+                        <i class="power icon"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- main home col -->
+        <div class="sixteen wide column">
+            <div class="main_home_grid ui grid">
+
+            </div>
+        </div>
+        <!-- main home col -->
+
+    </div>
+</div>
+
+<script>
+
+    function logout() {
+
+        if (confirm('Logout From This Device?') == true) {
+
+            // logou
+            // console.log('login out');
+            window.sessionStorage.removeItem('chamapoalia');
+
+            window.location.reload();
+        }
+    }
+
+    handleRoute();
+
+    // route here 
+
+    function handleRoute() {
+        // get current the route 
+        let currentroute = window.location.href;
+
+        let currentResourceArr = currentroute.split('/');
+
+        let currentResource = currentResourceArr[currentResourceArr.length - 1];
+
+
+        // alert(currentResource);
+
+
+        if (currentResource == '') {
+
+            currentResource = 'home'
+        }
+
+
+        switch (currentResource) {
+            case 'home':
+
+                // alert('kakaka')
+
+                $('.main_home_grid').load('views/home.html');
+
+                break;
+
+            case 'users':
+
+                // alert('kakaka')
+
+                $('.main_home_grid').load('views/users.html');
+
+                break;
+
+            case 'settings':
+
+                // alert('kakaka')
+
+                $('.main_home_grid').load('views/settings.html');
+
+                break;
+
+
+            case 'profile':
+
+                // alert('kakaka')
+
+                $('.main_home_grid').load('views/profile.html');
+
+                break;
+
+
+            case 'finance':
+
+                // alert('kakaka')
+
+                $('.main_home_grid').load('views/finance.html');
+
+                break;
+
+
+
+            default:
+
+                if (currentResource.includes('user?u=')) {
+
+                    $('.main_home_grid').load('views/user.html');
+
+                }
+
+                else {
+
+                }
+
+                break;
+        }
+
+
+    }
+
+</script>

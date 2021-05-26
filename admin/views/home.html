@@ -1,0 +1,222 @@
+<style>
+    .stat_icon {
+        height: 2.5em;
+        width: 2.5em;
+        /* margin:auto; */
+        border-radius: 50%;
+        font-size: 30px;
+        line-height: 2.5em;
+        text-align: center;
+        box-shadow: 1px 1px 1px 1px rgb(226, 226, 226);
+    }
+
+    .stat_fig {
+        font-size: 20px;
+        font-weight: 600;
+        color: rgb(58, 58, 58);
+        padding-top: 10px;
+    }
+
+    .stats_desc {
+        /* font-weight: 300; */
+        color: rgb(150, 150, 150);
+        padding-top: 10px;
+        font-size: 15px;
+    }
+</style>
+
+<div class=" sixteen wide column" style="margin-top: 1em;background: rgba(255, 255, 255, 0.747);">
+    <div class="ui grid">
+        <div class="re eleven wide column">
+            <div class="ui stackable three column grid">
+                <div class="re column">
+                    <div class="ui segment">
+                        <div class="stat_panel">
+                            <div class="ui grid">
+                                <div class="re eight wide column">
+                                    <div class="stat_icon" style="color:purple;background: rgba(132, 0, 255, 0.555);">
+                                        <i class="users icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="eight wide column">
+                                    <div class="totalOrders stat_fig">
+                                        10
+                                    </div>
+
+                                    <div class="stats_desc">
+                                        Total Users
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="yello column">
+                    <div class="ui segment">
+                        <div class="stat_panel">
+                            <div class="ui grid">
+                                <div class="re eight wide column">
+                                    <div class="stat_icon"
+                                        style="color:rgb(128, 0, 0);background: rgba(255, 0, 0, 0.555);">
+                                        <i class="download icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="eight wide column">
+                                    <div class="ordersToday stat_fig">
+                                        90
+                                    </div>
+
+                                    <div class="stats_desc">
+                                        Contributions
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="brow column">
+                    <div class="ui segment">
+                        <div class="stat_panel">
+                            <div class="ui grid">
+                                <div class="re eight wide column">
+                                    <div class="stat_icon"
+                                        style="color:rgb(128, 87, 0);background: rgba(255, 187, 0, 0.555);">
+                                        <i class="money icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="eight wide column">
+                                    <div class="salesToday stat_fig">
+                                        23,400.00
+                                    </div>
+
+                                    <div class="stats_desc">
+                                        Balance
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gree column">
+                    <div class="ui segment">
+                        <div class="stat_panel">
+                            <div class="ui grid">
+                                <div class="re eight wide column">
+                                    <div class="stat_icon"
+                                        style="color:rgb(0, 124, 128);background: rgba(0, 255, 221, 0.555);">
+                                        <i class="calendar icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="eight wide column">
+                                    <div class="totalSales stat_fig">
+                                        14
+                                    </div>
+
+                                    <div class="stats_desc">
+                                        Week
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="gree column">
+                    <div class="ui segment">
+                        <div class="stat_panel">
+                            <div class="ui grid">
+                                <div class="re eight wide column">
+                                    <div class="stat_icon"
+                                        style="color:rgb(87, 0, 128);background: rgba(212, 0, 255, 0.555);">
+                                        <i class="refresh icon"></i>
+                                    </div>
+                                </div>
+
+                                <div class="eight wide column">
+                                    <div class="totalSales stat_fig">
+                                        8
+                                    </div>
+
+                                    <div class="stats_desc">
+                                        Current Round
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- recents -->
+                <div class="re sixteen wide column">
+                    <!-- again -->
+                </div>
+                <!-- recents -->
+            </div>
+
+        </div>
+
+        <div class="gree five wide column">
+            <div class="ui segment">
+                <h4>
+                    Quick Links
+                </h4>
+
+                <hr>
+
+                <div class="">
+                    <a href="finance"><b>
+                            <i class="money icon"></i> Finance
+                        </b></a> <br> <br>
+
+                    <a href="Reports">
+
+                        <b> <i class="bar chart icon"></i> Reports</b>
+
+                    </a> <br> <br>
+
+                    <a href="users"><b>
+                            <i class="user icon"></i> Users
+                        </b></a> <br> <br>
+
+
+
+                    <a href="settings"><b>
+                            <i class="cog icon"></i> Settings
+                        </b></a> <br> <br>
+
+
+
+                    <a href="profile"><b>
+                            <i class="user icon"></i> Profile
+                        </b></a> <br> <br>
+
+
+                    <a style="cursor: pointer;" onclick="logout()"><b>
+                            <i class="power icon"></i> Logout
+                        </b></a> <br> <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    //   title to home 
+
+    document.title = "Admin | Home";
+
+
+</script>

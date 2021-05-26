@@ -1,0 +1,143 @@
+<div class="re sixteen wide column" style="margin-top: 1em;background: rgba(255, 255, 255, 0.747);">
+
+    <div class="ui grid">
+        <div class="sixteen wide column" style="border-bottom: 1px solid rgb(214, 214, 214);">
+            <div class="">
+                <h4>
+                    <i class="cogs icon"></i> Settings
+                </h4>
+            </div>
+        </div>
+
+
+        <div class="sixteen wide column">
+
+        </div>
+
+        <div class="five wide column" style="border-right: 1px solid rgb(214, 214, 214);">
+
+            <form class="ui form" id="contributionSettingsForm">
+                <div class="field">
+                    <label>
+                        Frequency
+                    </label>
+
+                    <select name="frequency" id="frequency" required>
+                        <option value="">Select Contribution Frequency</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Biweekly">Biweekly</option>
+                        <option value="Monthly">Monthly</option>
+                    </select>
+                </div>
+
+
+
+                <div class="field">
+                    <label>
+                        Amount
+                    </label>
+
+                    <select name="amount" id="amount" required>
+                        <option value="">Select Contribution Amount</option>
+                        <option value="250">250</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                        <option value="1500">1500</option>
+                        <option value="2500">2500</option>
+                        <option value="5000">5000</option>
+
+                    </select>
+                </div>
+
+
+                <div class="field" style="padding-top: 1em;text-align: center;">
+                    <button class="contSettingsBtn ui button">
+                        <i class="send icon"></i> Update Settings
+                    </button>
+                </div>
+            </form>
+        </div>
+
+
+        <div class=" ten wide column">
+
+            <div class="">
+
+                <span>
+                    <b>
+                        Contribution Frequency :
+                    </b>
+                </span>
+
+                <span class="frequency">
+
+                </span>
+            </div> <br>
+            <div class="">
+                <span>
+                    <b>
+                        Contribution Amount :
+                    </b>
+                </span>
+
+                <span class="amount">
+
+                </span>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+    document.title = "Admin | Settings";
+
+    // when contrinution setting is submitted 
+    $('#contributionSettingsForm').submit((e) => {
+
+        e.preventDefault();
+
+        let conSettings = $('#contributionSettingsForm').serialize();
+
+        // let new settings 
+        $('.contSettingsBtn').addClass('loading');
+
+        $.post('php/updateContributionSettings.php', conSettings, (data) => {
+
+            alert(data);
+
+            $('.contSettingsBtn').removeClass('loading');
+
+            getSettingValues();
+
+        })
+
+
+    })
+
+    getSettingValues();
+
+    function getSettingValues() {
+
+        $.post('php/getContributionSettings.php', (data) => {
+
+            let settings = JSON.parse(data);
+
+            // htmls 
+
+            $('.frequency').html('<b><i>' + settings.frequency + '</i></b>');
+
+            $('.amount').html('<b><i>' + settings.amount + '</i></b>');
+
+
+
+            // console.log(data);
+        })
+    }
+
+</script>

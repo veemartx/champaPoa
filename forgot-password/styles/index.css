@@ -1,0 +1,45 @@
+/* mobile */
+body{
+    background-image: url(../../assets/backgrounds/man-1253004.jpg);
+    background-size: 120% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.wrapper{
+    background:rgba(255, 0, 0, 0);
+    height: 100%;
+    width: 100%;
+}
+
+.login-title{
+    text-align: center;
+    font-size: 26px;
+    color:dodgerblue;
+    font-weight: 600;
+}
+
+/* tablet */
+@media only screen and (min-width:725px){
+    body{
+        /* background-image: url(../../assets/financial-2860753_1920.jpg); */
+        background-size: 100% 100%;
+        background-position: center;
+    }
+}
+
+/* pc */
+@media only screen and (min-width:768px){
+    body{
+    background-image: url(../../assets/backgrounds/man-1253004.jpg);
+    /* background-image: url(../../assets/financial-2860753_1920.jpg); */
+        background-size: 100% 100%;
+        background-position: center;
+    }
+
+    .wrapper{
+        background:rgba(255, 0, 0, 0);
+        height: 100%;
+        width: 100%;
+    }
+}

@@ -1,0 +1,530 @@
+<div class="re sixteen wide column" style="margin-top: 1em;background: rgba(255, 255, 255, 0.747);">
+
+    <div class="ui grid">
+        <div class="four wide column">
+            <div class="" style="border-right: 1px solid rgb(224, 224, 224);">
+                <div class="ui vertical fluid secondary menu">
+                    <a onclick="showContributions()" class="teal item">
+                        Contributions
+                        <div class="ui teal left pointing label">12</div>
+                    </a>
+                    <a onclick="showDispersals()" class="item">
+                        Dispersals
+                        <div class="ui label">8</div>
+                    </a>
+                    <a onclick="showReports()" class="item">
+                        Reports
+                        <div class="ui label">1</div>
+                    </a>
+                    <div class="item">
+                        <div class="ui transparent icon input">
+                            <input type="text" placeholder="Search Transactions...">
+                            <i class="search icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="twelve wide column">
+            <div class="ui finance_grid grid">
+                <div class="contributions re sixteen wide column" style="display: none;">
+                    <div class="ui grid" style="margin: 1em;background: #fff;">
+                        <div class="orang sixteen wide column" style="border-bottom: 1px solid rgb(189, 189, 189);">
+                            <h4>
+                                Contributions
+
+                                <span style="float: right;">
+                                    <button class="addContribution ui purple basic mini button">
+                                        <i class="plus icon"></i> Add Contribution
+                                    </button>
+                                </span>
+                            </h4>
+                        </div>
+
+
+                        <div class="sixteen wide column">
+                            <div class="">
+                                <table class="ui basic unstackable striped table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                No
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+
+                                            <th>
+                                                Code
+                                            </th>
+
+                                            <th>
+                                                Round
+                                            </th>
+                                            <th>
+                                                Amount
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="contributionsList">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dispersals gree sixteen wide column" style="display: none;">
+                    <div class="ui grid" style="margin: 1em; background: #fff;">
+                        <div class="sixteen wide column" style="border-bottom: 1px solid rgb(199, 199, 199);">
+                            <h4>
+                                Dispersals
+
+                                <span style="float:right">
+
+                                    <button class="disperseBtn ui purple basic mini button">
+                                        <i class="send icon"></i> Disperse
+                                    </button>
+                                </span>
+                            </h4>
+                        </div>
+
+                        <div class="sixteen wide column">
+                            <div class="">
+                                <table class="ui basic striped table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>User</th>
+                                            <th>Code</th>
+                                            <th>Transaction Id</th>
+                                            <th>Round</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="dispersalsList">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="reports yello sixteen wide column" style="display: none;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- add contributions modal  -->
+<div class="addContributionModal"
+    style="position: fixed;top: 0;left: 0;width: 100%;height: 100vh;background: rgba(0, 0, 0, 0.699);display: none;">
+    <div class="ui segment" style="padding-top: 2em;max-width: 40em;margin:2em auto">
+        <div class="ui grid">
+            <div class="eight wide column">
+                <h4>
+                    Add Contribution
+                </h4>
+            </div>
+
+            <div class="eight wide column">
+                <h4>
+                    <span style="float: right;">
+                        <i class="closeAddContributionModal x icon" style="cursor: pointer;"></i></span>
+                </h4>
+            </div>
+
+            <div class="sixteen wide column" style="border-top: solid 1px rgb(172, 172, 172);margin-top: 10px;">
+                <form class="ui form" id="addContributionForm">
+                    <div class="field">
+                        <label>Contributor</label>
+                        <select name="contributor" id="contributor" required>
+                            <option value=""> Select User</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Payment Type</label>
+                        <select name="paymentMethod" id="paymentMethod" required>
+                            <option value="">Payment Type</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Mpesa">Mpesa</option>
+                            <option value="Bank">Bank</option>
+
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>Transaction Id</label>
+                        <input type="text" name="transactionId" id="transactionId" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Amount</label>
+                        <input type="text" name="amount" id="amount" readonly>
+                    </div>
+
+                    <div class="field">
+                        <label>Round</label>
+                        <input type="number" name="round" id="round" required>
+                    </div>
+
+
+
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <input type="checkbox" name="next" id="next">
+                            <label>Next Round ?</label>
+                        </div>
+                    </div>
+
+                    <div class="field" style="padding-top:2em;text-align:center;">
+                        <button class="addContributionSbtBtn  ui purple basic button">
+                            <i class="plus icon"></i> Add Contribution
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- add contributions modal  -->
+
+<!-- dispersal modal  -->
+<div class="addDispersalModal"
+    style="position: fixed;top: 0;left: 0;width: 100%;height: 100vh;background: rgba(0, 0, 0, 0.699);display: none;">
+
+    <div class="ui segment" style="padding-top: 2em;max-width: 40em;margin:2em auto">
+        <div class="ui grid">
+            <div class="eight wide column">
+                <h4>
+                    Disperse
+                </h4>
+            </div>
+
+            <div class="eight wide column">
+                <h4>
+                    <span style="float: right;">
+                        <i class="closeAddDispersalModal x icon" style="cursor: pointer;"></i></span>
+                </h4>
+            </div>
+
+            <div class="sixteen wide column" style="border-top:1px solid rgb(175, 175, 175)">
+
+                <div class="">
+                    <form class="ui form" id="addDispersalForm">
+                        <div class="field">
+                            <label>Recipient</label>
+
+                            <select name="recipient" id="recipient" required>
+                                <option value="">Recipient</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label>
+                                Contribution Code
+                            </label>
+
+                            <select name="code" id="code" required>
+                                <option value="">Select Contribution Code</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label>Transaction Id</label>
+                            <input type="text" name="transactionId" id="dTransactionId">
+                        </div>
+
+                        <div class="field" style="text-align: center;padding-top: 2em;">
+                            <button class="addDispersalSbtBtn ui orange basic button">
+                                <i class="add icon"></i> Add Dispersal
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+<!-- dispersal modal  -->
+
+
+
+
+
+
+<script>
+
+    showContributions();
+    // showDispersals();
+
+    function showContributions() {
+
+        $('.reports').hide();
+
+        $('.dispersals').hide();
+
+        $('.contributions').show();
+
+    }
+
+
+    function showDispersals() {
+
+        $('.reports').hide();
+
+        $('.contributions').hide();
+
+        $('.dispersals').show();
+
+
+    }
+
+
+    function showReports() {
+
+        $('.dispersals').hide();
+
+        $('.contributions').hide();
+
+        $('.reports').show();
+
+
+    }
+
+
+    // when add contribution
+    $('.addContribution').click(() => {
+
+        $('.addContributionModal').fadeIn('slow');
+
+    });
+
+
+    // when add dispersal
+    $('.disperseBtn').click(() => {
+
+        $('.addDispersalModal').fadeIn('slow');
+
+    })
+
+    // when add contribution form is submitted 
+    $('#addContributionForm').submit((e) => {
+
+        e.preventDefault();
+
+        let contribution = $('#addContributionForm').serialize();
+
+        // load the btn 
+        $('.addContributionSbtBtn').addClass('loading');
+
+        alert(contribution);
+
+        $.post('php/addContribution.php', contribution, (data) => {
+
+            alert(data);
+
+            $('.addContributionSbtBtn').removeClass('loading');
+
+            $('#addContributionForm').trigger('reset');
+
+            getContributions();
+
+        })
+
+
+
+    })
+
+
+    // when ad dispersal form is submmitted 
+
+    $('#addDispersalForm').submit((e) => {
+
+        e.preventDefault();
+
+        let dispersal = $('#addDispersalForm').serialize();
+
+        $('.addDispersalSbtBtn').addClass('loading');
+
+        $.post('php/addDispersal.php', dispersal, (data) => {
+
+            alert(data);
+
+            $('.addDispersalSbtBtn').removeClass('loading');
+
+            $('#addDispersalForm').trigger('reset');
+
+            getDispersals();
+
+
+        })
+
+
+    })
+
+
+
+    // when close modal is clicked 
+    $('.closeAddContributionModal').click(() => {
+        $('.addContributionModal').fadeOut('slow');
+    })
+
+
+    $('.closeAddDispersalModal').click(() => {
+        $('.addDispersalModal').fadeOut('slow');
+    })
+
+
+    // get prefect data 
+
+    $.post('php/getPrefetch.php', (data) => {
+
+        console.log(data);
+        let res = JSON.parse(data);
+
+        // add the contributor
+        for (let x = 0; x < res.users.length; x++) {
+
+            $('#contributor').append('<option value="' + res.users[x] + '">' + res.users[x] + '</option>');
+            $('#recipient').append('<option value="' + res.users[x] + '">' + res.users[x] + '</option>');
+
+        }
+
+        // add amount
+        document.getElementById('amount').value = res.amount;
+
+
+        // add the codes 
+        for (let x = 0; x < res.codes.length; x++) {
+
+            $('#code').append('<option value="' + res.codes[x] + '">' + res.codes[x] + '</option>');
+
+        }
+
+
+    })
+
+
+    getContributions();
+
+    function getContributions() {
+
+        $.post('php/getContributions.php', (data) => {
+
+            // alert(data);
+
+            let contributions = JSON.parse(data);
+
+
+            let counter = 0;
+
+            $('.contributionsList').empty();
+
+            for (let i = 0; i < contributions.length; i++) {
+
+                // append the rows on the tbody
+                $('.contributionsList').append('<tr class="contributions_row' + i + '"/>');
+
+                // css
+                $('.contributions_row' + i).css({ cursor: 'pointer' });
+
+                // create the holder var
+                let colData = "";
+
+                // create the for in vars
+                let dataKey;
+
+                // for in loop for the columns
+                for (dataKey in contributions[i]) {
+
+                    // append the columns
+                    $('.contributions_row' + i).append('<td class="contributions_col' + counter + '"/>');
+
+
+                    // put the data in the colums
+                    $('.contributions_col' + counter).html(contributions[i][dataKey]);
+
+                    // increment the data
+                    counter++;
+                }
+
+            }
+        })
+
+    }
+
+
+    getDispersals();
+
+    function getDispersals() {
+        $.post('php/getDispersals.php', (data) => {
+
+            // alert(data);
+
+            let dispersals = JSON.parse(data);
+
+
+            let counter = 0;
+
+            $('.dispersalsList').empty();
+
+            for (let i = 0; i < dispersals.length; i++) {
+
+                // append the rows on the tbody
+                $('.dispersalsList').append('<tr class="dispersals_row' + i + '"/>');
+
+                // css
+                $('.dispersals_row' + i).css({ cursor: 'pointer' });
+
+                // create the holder var
+                let colData = "";
+
+                // create the for in vars
+                let dataKey;
+
+                // for in loop for the columns
+                for (dataKey in dispersals[i]) {
+
+                    // append the columns
+                    $('.dispersals_row' + i).append('<td class="dispersals_col' + counter + '"/>');
+
+
+                    // put the data in the colums
+                    $('.dispersals_col' + counter).html(dispersals[i][dataKey]);
+
+                    // increment the data
+                    counter++;
+                }
+
+            }
+        })
+    }
+</script>

@@ -1,0 +1,43 @@
+body{
+    /* background:red; */
+    background-image: url(../../assets/backgrounds/man-1253004.jpg);
+    /* background-size: 100% 100%; */
+    background-position: center;
+    /* background-repeat: no-repeat; */
+}
+
+.contentBox{
+    height: 5em;
+    max-width: 80em;;
+    margin: auto;
+    background: rgba(30, 143, 255, 0);
+}
+
+.loginContainer{
+    height: 24em;
+    width: 22em;
+    padding-top:1em;
+    position: absolute;
+    z-index: 100;
+    right: 1em;
+    display:none;
+    
+}
+
+.punchline{
+    font-size: 36px;
+    text-align: center;
+    font-weight: 100;
+    padding-top: 2em;
+    color: crimson;
+    
+}
+
+.tagline{
+    font-size: 23px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 25px;
+    padding-top: 1em;
+    color: aliceblue;
+}

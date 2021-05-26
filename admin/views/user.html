@@ -1,0 +1,158 @@
+<style>
+
+</style>
+
+<div class="sixteen wide column">
+    <div class="userView">
+
+        <div class="ui grid">
+            <div class="re sixteen wide column">
+                <div class="" style="background: rgba(255,255,255,.8);padding: 10px;">
+                    <h4>
+                        User Details
+                    </h4>
+                </div>
+
+
+                <div class="" style="background: rgba(255,255,255,.8);padding: 10px; margin-top: 10px;">
+                    <div class="ui grid">
+                        <div class="nine wide column" style="border-right: 1px solid rgb(209, 209, 209);">
+                            <form class="ui form" id="editUserDetailsForm">
+
+                                <div class="field">
+                                    <label>Name</label>
+                                    <input type="text" name="name" id="name" style="border: none;">
+                                </div>
+
+                                <div class="field">
+                                    <label>Email</label>
+                                    <input type="email" name="email" id="email" style="border: none;">
+                                </div>
+                                <div class="field">
+                                    <label>Phone</label>
+                                    <input type="tel" name="phone" id="phone" style="border: none;">
+                                </div>
+
+                                <div class="field">
+                                    <label>Acc No</label>
+                                    <input type="number" name="accNo" id="accNo" style="border: none;">
+                                </div>
+
+
+                                <div class="field">
+                                    <label>Id No</label>
+                                    <input type="number" name="idNo" id="idNo" style="border: none;">
+                                </div>
+
+
+                                <div class="field">
+                                    <label>Acc No</label>
+                                    <input type="text" name="position" id="position" style="border: none;">
+                                </div>
+
+
+                                <div class="field" style="text-align: center;padding-top: 2em;">
+                                    <button class="ui green basic min button">
+                                        Edit
+                                    </button>
+                                    <button class="ui orange  basic min button" type="button">
+                                        Suspend
+                                    </button>
+                                    <button class="ui red basic min button" type="button">
+                                        Delete
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="seven wide column">
+                            <div class="">
+                                <h5>
+                                    Contributions
+                                </h5>
+                            </div>
+                            <div class="">
+                                <table class="ui  very basic striped unstackable table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                No.
+                                            </th>
+                                            <th>
+                                                Contribution Id
+                                            </th>
+                                            <th>
+                                                Amount
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+
+                                            <th>
+                                                View
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    let title = "User";
+
+    document.title = "Admin | " + title;
+
+
+    let userId = getEntityId('u');
+
+
+    let userParam = $.param({
+        userId: userId,
+    })
+
+
+    $.post('php/getUser.php', userParam, (data) => {
+
+        let userData = JSON.parse(data);
+
+        console.log(userData);
+        // htmls 
+        document.getElementById('name').value = userData.name;
+        document.getElementById('email').value = userData.email;
+        document.getElementById('phone').value = userData.phone;
+        document.getElementById('position').value = userData.position;
+        document.getElementById('accNo').value = userData.accNo;
+        document.getElementById('idNo').value = userData.idNo;
+
+
+
+    })
+
+
+    // when edit form is submitted 
+    $('#editUserDetailsForm').submit((e) => {
+
+        e.preventDefault();
+
+        let userEditData = $('#editUserDetailsForm').serialize();
+
+        // 
+    })
+
+
+    function getEntityId(name) {
+
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.search);
+
+        return (results !== null) ? results[1] || 0 : false;
+
+    }
+</script>

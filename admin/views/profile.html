@@ -1,0 +1,124 @@
+<div class="re sixteen wide column" style="margin-top: 1em;background: rgba(255, 255, 255, 0.747);">
+
+    <div class="ui grid">
+        <div class="sixteen wide column" style="border-bottom: 1px solid rgb(199, 199, 199);">
+            <div class="">
+                <h4>
+                    <i class="user icon"></i> Profile
+                </h4>
+            </div>
+        </div>
+
+        <div class="six wide column">
+            <div class="">
+                <form class="ui form" id="editUserForm">
+                    <div class="field">
+                        <input type="text" name="name" id="name">
+                    </div>
+
+                    <div class="field">
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="field">
+                        <input type="tel" name="phone" id="phone">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="username" id="username">
+                    </div>
+
+                    <div class="field" style="text-align: center;padding-top: 1em;">
+                        <button class="ui yellow button">
+                            <i class="edit icon"> </i> Edit
+                        </button>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="two wide column">
+
+        </div>
+
+        <div class="six wide column">
+            <div>
+                <h4>
+                    Change Password
+                </h4>
+            </div>
+
+            <div class="ui form" id="changeAdminPassForm">
+                <div class="field">
+                    <label>
+                        Current Password
+                    </label>
+
+                    <input type="password" name="currentPassword" id="currentPassword">
+                </div>
+
+
+                <div class="field">
+                    <label>
+                        New Password
+                    </label>
+
+                    <input type="password" name="newPassword" id="newPassword">
+                </div>
+
+
+                <div class="field">
+                    <label>
+                        Confirm Password
+                    </label>
+
+                    <input type="password" name="confirmPassword" id="confirmPassword">
+                </div>
+
+
+                <div class="field" style="text-align: center;padding-top: 1em;">
+                    <button class="ui green  button">
+
+                        <i class="send icon"></i> Change Password
+                    </button>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.title = "Admin | Profile";
+
+    let lia = $.param({
+
+        lia: window.sessionStorage.chamapoalia
+    })
+
+    $.post('php/getAdminProfile.php', lia, (data) => {
+
+        // alert(data);
+        let profile = JSON.parse(data);
+
+        // htmls 
+        document.getElementById('name').value = profile.name;
+
+        document.getElementById('email').value = profile.email;
+
+        document.getElementById('phone').value = profile.phone;
+
+        document.getElementById('username').value = profile.username;
+
+    })
+
+
+    // when edit user form is submittd 
+    $('#editUserForm').submit((e) => {
+
+        e.preventDefault();
+    })
+
+</script>
