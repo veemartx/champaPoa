@@ -1,0 +1,230 @@
+<div class=" sixteen wide column" style="margin-top: 1em;background: rgba(255, 255, 255, 0.747);">
+
+    <div class="ui grid">
+        <div class="re  ten wide column">
+            <div class="">
+                <h3>
+                    Users
+                </h3>
+            </div>
+
+
+
+        </div>
+
+        <div class="six wide column">
+            <div class="" style="background: rgba(255, 255, 255, 0);text-align: right;">
+                <!-- <button class="addUserButton ui mini green basic button">
+                    <i class="plus icon"></i> Add User
+                </button> -->
+            </div>
+        </div>
+
+        <div class="re sixteen wide column">
+
+            <div class="" style="background: rgba(255,255,255,.8);padding: 10px;margin-top: 10px;">
+                <table class="ui basic striped table">
+                    <thead>
+                        <th>
+                            No
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+
+                        <th>
+                            Id. No
+                        </th>
+
+                        <th>
+                            Acc. No.
+                        </th>
+                        <th>
+                            Added
+                        </th>
+
+                        <th>
+                            Position
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            View
+                        </th>
+                    </thead>
+                    <tbody class="usersList">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- add user modal  -->
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Add User
+    </div>
+
+    <div class="" style="padding: 1em;">
+        <form class="ui form" id="addUserForm">
+            <div class="two fields">
+                <div class="field">
+                    <label>First Name</label>
+                    <input type="text" name="fname" id="fname" placeholder="John/Jane" required>
+                </div>
+
+                <div class="field">
+                    <label>Last Name</label>
+                    <input type="text" name="lname" id="lname" placeholder="Doe" required>
+                </div>
+            </div>
+
+
+            <div class="two fields">
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="email" id="email" placeholder="abc@example.com" required>
+                </div>
+
+                <div class="field">
+                    <label>Phone</label>
+                    <input type="tel" name="phone" id="phone" placeholder="07100900890" required>
+                </div>
+            </div>
+
+
+            <div class="two fields">
+
+                <div class="field">
+                    <label>
+                        ID Number
+                    </label>
+                    <input type="number" name="idNo" id="idNo" required>
+
+                </div>
+
+
+                <div class="field">
+                    <label>
+                        Position
+                    </label>
+
+                    <select name="position" id="position" required>
+                        <option value="">Select Position</option>
+                        <option value="Treasurer">Treasurer</option>
+                        <option value="Secretary">Secretary</option>
+                        <option value="User">User</option>
+                        <!-- <option value=""></option> -->
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="field" style="text-align: center;padding-top: 2em;">
+                <button class="ui basic purple button addUserBtn">
+                    <i class="plus icon"></i> Add User
+                </button>
+            </div>
+
+
+        </form>
+    </div>
+
+</div>
+<!-- add user modal  -->
+
+<script>
+
+    document.title = "User | Users";
+
+
+    // when add user button is clicked 
+    $('.addUserButton').click(() => {
+
+        // show the modal 
+
+        $('.ui.modal').modal('show');
+    })
+
+
+
+    // when the form is submitted 
+    $('#addUserForm').submit((e) => {
+
+        e.preventDefault();
+
+        let newUserData = $('#addUserForm').serialize();
+
+        $('.addUserBtn').addClass('loading');
+
+        $.post('php/addUser.php', newUserData, (data) => {
+
+            alert(data);
+
+            $('#addUserForm').trigger('reset');
+
+            getUsers();
+        })
+    })
+
+
+    getUsers();
+    function getUsers() {
+
+        $.post('php/getUsers.php', (data) => {
+
+            // console.log(data);
+            let users = JSON.parse(data);
+
+
+            let counter = 0;
+
+            $('.usersList').empty();
+
+            for (let i = 0; i < users.length; i++) {
+
+                // append the rows on the tbody
+                $('.usersList').append('<tr class="users_row' + i + '"/>');
+
+                // css
+                $('.users_row' + i).css({ cursor: 'pointer' });
+
+                // create the holder var
+                let colData = "";
+
+                // create the for in vars
+                let dataKey;
+
+                // for in loop for the columns
+                for (dataKey in users[i]) {
+
+                    // append the columns
+                    $('.users_row' + i).append('<td class="users_col' + counter + '"/>');
+
+
+                    // put the data in the colums
+                    $('.users_col' + counter).html(users[i][dataKey]);
+
+                    // increment the data
+                    counter++;
+                }
+
+            }
+        })
+    }
+
+
+</script>

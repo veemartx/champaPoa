@@ -282,7 +282,32 @@
 
 <script>
 
-    
+    // get user profile 
+    let lia = $.param({
+
+        lia: window.sessionStorage.chamapoaliu
+    })
+
+
+    $.post('php/getUserProfile.php', lia, (data) => {
+
+        // alert(data);
+        let profile = JSON.parse(data);
+
+        // console.log(profile);
+
+        if (profile.position != "Treasurer") {
+
+            $('.addContribution').addClass('disabled');
+
+            $('.addDispersal').addClass('disabled');
+
+        }
+
+    })
+
+
+
 
     showContributions();
     // showDispersals();
