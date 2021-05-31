@@ -19,6 +19,7 @@
                         <div class="nine wide column" style="border-right: 1px solid rgb(209, 209, 209);">
                             <form class="ui form" id="editUserDetailsForm">
 
+                                <input type="hidden" name="userId" id="userId">
                                 <div class="field">
                                     <label>Name</label>
                                     <input type="text" name="name" id="name" style="border: none;">
@@ -46,19 +47,26 @@
 
 
                                 <div class="field">
-                                    <label>Acc No</label>
+                                    <label>Postion</label>
                                     <input type="text" name="position" id="position" style="border: none;">
                                 </div>
 
 
                                 <div class="field" style="text-align: center;padding-top: 2em;">
-                                    <button class="ui green basic min button">
+                                    <button class="editUserBtn ui green basic min button">
                                         Edit
                                     </button>
-                                    <button class="ui orange  basic min button" type="button">
+
+                                    <button class="suspendUserBtn ui orange  basic min button" type="button">
                                         Suspend
                                     </button>
-                                    <button class="ui red basic min button" type="button">
+
+                                    <button class="restoreUserBtn ui green  basic min button" type="button">
+                                        Restore
+                                    </button>
+
+
+                                    <button class="deleteUserBtn ui red basic min button" type="button">
                                         Delete
                                     </button>
                                 </div>
@@ -133,18 +141,101 @@
         document.getElementById('idNo').value = userData.idNo;
 
 
+        if (userData.status == 'active') {
+
+            // hide the restore button
+            $('.restoreUserBtn').hide();
+        } else {
+
+            // hide the suspend button 
+            $('.suspendUserBtn').hide();
+        }
 
     })
 
+
+    // when suspend user is clicked 
+    $('.suspendUserBtn').click(() => {
+
+        if (confirm('Suspend This User?') == true) {
+
+            $('.suspendUserBtn').addClass('loading');
+            $.post('php/suspendUser.php', userParam, (data) => {
+                alert(data);
+
+                window.location.reload();
+
+                $('.suspendUserBtn').removeClass('loading');
+
+            })
+
+        }
+    })
+
+
+    // when restore user is clicked 
+
+    $('.restoreUserBtn').click(() => {
+
+        if (confirm('Restore This User?') == true) {
+
+            $('.restoreUserBtn').addClass('loading');
+            $.post('php/restoreUser.php', userParam, (data) => {
+                alert(data);
+
+                window.location.reload();
+
+                $('.restoreUserBtn').removeClass('loading');
+
+            })
+
+        }
+    })
+
+
+
+    // when delete is clicked 
+    $('.deleteUserBtn').click(() => {
+
+        if (confirm('Delete This User? This Action Cannot Be Undone') == true) {
+
+            $('.deleteUserBtn').addClass('loading');
+
+            $.post('php/deleteUser.php', userParam, (data) => {
+
+                alert(data);
+
+                $('.deleteUserBtn').addClass('loading');
+
+
+                window.history.back();
+            })
+
+        }
+    })
 
     // when edit form is submitted 
     $('#editUserDetailsForm').submit((e) => {
 
         e.preventDefault();
 
+        document.getElementById('userId').value = userId;
+
         let userEditData = $('#editUserDetailsForm').serialize();
 
-        // 
+        // alert(userEditData);
+
+        if (confirm('Edit User Details?') == true) {
+
+            $('.editUserBtn').addClass('loading');
+
+            $.post('php/editUserDetails.php', userEditData, (data) => {
+
+                alert(data);
+
+                window.location.reload();
+            })
+        }
     })
 
 

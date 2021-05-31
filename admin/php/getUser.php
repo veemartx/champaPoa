@@ -29,9 +29,9 @@ if ($u = mysqli_fetch_assoc($selQuery)) {
 
     $res->idNo = $u['idNo'];
 
+    $res->status = $u['status'];
 
     $res->contributions = [];
-
 } else {
 
     $res->exists = false;

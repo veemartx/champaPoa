@@ -52,13 +52,13 @@
 
 
                                 <div class="field" style="text-align: center;padding-top: 2em;">
-                                    <button class="ui green basic min button">
+                                    <button class="editUserBtn ui green basic min button">
                                         Edit
                                     </button>
-                                    <button class="ui orange  basic min button" type="button">
+                                    <button class="suspendUserBtn ui orange  basic min button" type="button">
                                         Suspend
                                     </button>
-                                    <button class="ui red basic min button" type="button">
+                                    <button class="deleteUserBtn ui red basic min button" type="button">
                                         Delete
                                     </button>
                                 </div>
@@ -132,6 +132,15 @@
         document.getElementById('accNo').value = userData.accNo;
         document.getElementById('idNo').value = userData.idNo;
 
+
+        if (userData.position != 'Treasurer') {
+
+            $('.editUserBtn').addClass('disabled');
+            $('.suspendUserBtn').addClass('disabled');
+            $('.deleteUserBtn').addClass('disabled');
+
+
+        }
 
 
     })
