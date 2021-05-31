@@ -29,6 +29,14 @@
     <div class="ui grid">
         <div class="re eleven wide column">
             <div class="ui stackable three column grid">
+
+                <div class="sixteen wide column" style="background: rgba(184, 44, 44, 0.432); color: aliceblue;">
+                    <h4>
+                        All Stats
+                    </h4>
+                </div>
+
+                <br>
                 <div class="re column">
                     <div class="ui segment">
                         <div class="stat_panel">
@@ -164,8 +172,16 @@
                 </div>
 
 
+
+
                 <div class="sixteen wide column">
                     <div class="ui four column grid">
+                        <div class="sixteen wide column"
+                            style="background: rgba(184, 44, 44, 0.432); color: aliceblue;">
+                            <h4>
+                                My Stats
+                            </h4>
+                        </div>
                         <div class="gree column">
                             <div class="ui segment">
                                 <div class="stat_panel">
@@ -333,7 +349,7 @@
 
     function getHomePageStats() {
 
-        $.post('php/getHomePageStats.php',profile, (data) => {
+        $.post('php/getHomePageStats.php', profile, (data) => {
 
             // console.log(data);
             let stats = JSON.parse(data);
