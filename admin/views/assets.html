@@ -1,0 +1,75 @@
+<div class="sixteen wide column" style="margin-top: 1em;background: rgba(255, 255, 255, 0.747);">
+
+    <div class="ui grid">
+        <div class="sixteen wide column" style="border-bottom: 1px solid rgb(212, 212, 212);">
+            <h4>
+                Assets
+            </h4>
+        </div>
+
+        <div class="four wide column" style="border-right: 1px solid rgb(207, 207, 207);">
+            <div class="">
+
+                <h4>
+                    Add Asset
+                </h4>
+                <form class="ui form" id="addAssetForm">
+                    <div class="field">
+                        <label>
+                            Name
+                        </label>
+
+                        <input type="text" name="name" id="name">
+                    </div>
+
+
+                    <div class="field">
+                        <label>
+                            Description
+                        </label>
+
+                        <textarea name="description" id="description" cols="30" rows="10"
+                            placeholder="description"></textarea>
+                    </div>
+
+
+                    <div class="field">
+                        <label>Value</label>
+                        <input type="number" name="value" id="value">
+                    </div>
+
+
+                    <div class="field" class='text-align:center;padding-top:1em'>
+                        <button class="addAssetButton ui purple basic button">
+                            <i class="add icon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+
+    // when add asset form is submitted 
+    $('#addAssetForm').submit((e) => {
+
+        e.preventDefault();
+
+        let assetData = $('#addAssetForm').serialize();
+
+        $('.addAssetButton').addClass('loading');
+
+        $.post('php/addAsset.php', assetData, (data) => {
+
+            alert(data);
+
+            $('.addAssetButton').removeClass('loading');
+
+        })
+
+    })
+</script>
